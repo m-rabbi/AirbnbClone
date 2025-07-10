@@ -32,13 +32,17 @@ struct ListingDetailView: View {
                         .frame(width: 40, height: 40 )
                         .background {
                             Circle()
-                                .fill(.white)
-                                
+                                .fill(.ultraThinMaterial)
+                                .overlay(
+                                    Circle()
+                                        .stroke(Color.white.opacity(0.4), lineWidth: 1)
+                                )
+                            
                         }
                 }
                 .padding(.top, 48)
                 .padding(.leading, 20)
-
+                
             }
             
             VStack(alignment: .leading, spacing: 8) {
@@ -94,7 +98,7 @@ struct ListingDetailView: View {
                     .clipShape(Circle())
             }
             .padding()
-     
+            
             Divider()
             
             // listing features
@@ -113,7 +117,7 @@ struct ListingDetailView: View {
                                 .foregroundStyle(.secondary)
                         }
                         Spacer()
-
+                        
                     }
                 }
             }
@@ -217,7 +221,7 @@ struct ListingDetailView: View {
                             .background(.pink)
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                     }
-
+                    
                 }
                 .padding(.horizontal, 32)
             }
