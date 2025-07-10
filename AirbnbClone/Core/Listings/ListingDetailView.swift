@@ -150,6 +150,7 @@ struct ListingDetailView: View {
             
             Divider()
             
+            // map
             VStack(alignment: .leading, spacing: 16) {
                 Text("Where you will be")
                     .font(.headline)
@@ -159,6 +160,47 @@ struct ListingDetailView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
             .padding()
+        }
+        .ignoresSafeArea()
+        .padding(.bottom, 84)
+        .overlay(alignment: .bottom) {
+            VStack {
+                Divider()
+                    .padding(.bottom)
+                
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("$500")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                        
+                        Text("Total before taxes")
+                            .font(.footnote)
+                        
+                        Text("Oct 15 - Oct 22")
+                            .font(.footnote)
+                            .fontWeight(.semibold)
+                            .underline()
+                    }
+                    
+                    Spacer()
+                    
+                    Button {
+                        
+                    } label: {
+                        Text("Reserve")
+                            .foregroundStyle(.white)
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .frame(width: 140, height: 40)
+                            .background(.pink)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+
+                }
+                .padding(.horizontal, 32)
+            }
+            .background(.white)
         }
     }
 }
