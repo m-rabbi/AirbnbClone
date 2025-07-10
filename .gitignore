@@ -1,0 +1,46 @@
+# Xcode
+.DS_Store
+build/
+DerivedData/
+xcuserdata/
+*.xcworkspace
+*.xcuserstate
+
+# SwiftPM
+.build/
+.swiftpm/
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Firebase
+GoogleService-Info.plist
+
+# Other
+*.log
+*.hmap
+*.ipa
+*.xcscmblueprint
+*.xccheckout
+*.xcuserstate
+.idea/
+*.moved-aside
+*.swp
+
+# Temporary
+*.tmp
+*.temp
+*.orig
+
+# Local env
+.env
