@@ -16,10 +16,30 @@ struct ListingDetailView: View {
         "listing-3"
     ]
     
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         ScrollView {
-            ListingImageCarouselView()
-                .frame(height: 320)
+            ZStack(alignment: .topLeading) {
+                ListingImageCarouselView()
+                    .frame(height: 320)
+                
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundStyle(.black)
+                        .frame(width: 40, height: 40 )
+                        .background {
+                            Circle()
+                                .fill(.white)
+                                
+                        }
+                }
+                .padding(.top, 48)
+                .padding(.leading, 20)
+
+            }
             
             VStack(alignment: .leading, spacing: 8) {
                 Text("Miami Villa")
@@ -92,8 +112,9 @@ struct ListingDetailView: View {
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }
+                        Spacer()
+
                     }
-                    Spacer()
                 }
             }
             .padding()
