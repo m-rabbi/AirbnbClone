@@ -73,7 +73,7 @@ struct ListingDetailView: View {
                     .clipShape(Circle())
             }
             .padding()
-            
+     
             Divider()
             
             // listing features
@@ -94,6 +94,34 @@ struct ListingDetailView: View {
                     }
                     Spacer()
                 }
+            }
+            .padding()
+            
+            Divider()
+            
+            VStack(alignment: .leading, spacing: 16) {
+                Text("Where you will sleep")
+                    .font(.headline)
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 16) {
+                        ForEach(1 ..< 5) { bedroom in
+                            VStack {
+                                Image(systemName: "bed.double")
+                                
+                                Text("Bedroom \(bedroom)")
+                            }
+                            .frame(width: 132, height: 100)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(lineWidth: 1)
+                                    .foregroundStyle(.secondary)
+                            }
+                            .frame(width: 135, height: 102)
+                        }
+                    }
+                }
+                .scrollTargetBehavior(.paging)
             }
             .padding()
         }
