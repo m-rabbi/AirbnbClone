@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ListingDetailView: View {
     var images = [
@@ -144,6 +145,18 @@ struct ListingDetailView: View {
                         Spacer()
                     }
                 }
+            }
+            .padding()
+            
+            Divider()
+            
+            VStack(alignment: .leading, spacing: 16) {
+                Text("Where you will be")
+                    .font(.headline)
+                
+                Map()
+                    .frame(height: 250)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
             }
             .padding()
         }
