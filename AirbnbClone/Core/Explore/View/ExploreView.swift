@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ExploreView: View {
     @State private var showDestinationSearchView = false
+    @State var viewModel = ExploreViewModel(service: ExploreService())
     
     var body: some View {
         NavigationStack {
@@ -24,7 +25,7 @@ struct ExploreView: View {
                         }
                     
                     LazyVStack {
-                        ForEach(0..<10) { listing in
+                        ForEach(viewModel.listings) { listing in
                             NavigationLink(value: listing) {
                                 ListingItemView()
                             }
