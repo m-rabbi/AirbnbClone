@@ -32,24 +32,30 @@ struct DestinationSearchView: View {
             
             // location input
             VStack(alignment: .leading) {
-                Text("Where to?")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                        .imageScale(.small)
+                if selectedOption == .location {
+                    Text("Where to?")
+                        .font(.title2)
+                        .fontWeight(.semibold)
                     
-                    TextField("Search destinations", text: $destination)
-                        .font(.subheadline)
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .imageScale(.small)
+                        
+                        TextField("Search destinations", text: $destination)
+                            .font(.subheadline)
+                    }
+                    .frame(height: 44)
+                    .padding(.horizontal)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(lineWidth: 1)
+                            .foregroundStyle(Color(.systemGray4))
+                    }
+                } else {
+                    CollapsedPickerView(title: "Where", description: "Add Destination")
                 }
-                .frame(height: 44)
-                .padding(.horizontal)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(lineWidth: 1)
-                        .foregroundStyle(Color(.systemGray4))
-                }
+                    
+                
             }
             .padding()
             .background(.white)
@@ -61,16 +67,28 @@ struct DestinationSearchView: View {
             }
             
             // date selection view
-            CollapsedPickerView(title: "When", description: "Add dates")
-                .onTapGesture {
-                    selectedOption = .dates
+            VStack {
+                if selectedOption == .dates {
+                    
+                } else {
+                    CollapsedPickerView(title: "When", description: "Add dates")
                 }
+            }
+            .onTapGesture {
+                selectedOption = .dates
+            }
              
             // num of guests
-            CollapsedPickerView(title: "Who", description: "Add guests")
-                .onTapGesture {
-                    selectedOption = .guests
+            VStack {
+                if selectedOption == .guests {
+                    
+                } else {
+                    CollapsedPickerView(title: "Who", description: "Add guests")
                 }
+            }
+            .onTapGesture {
+                selectedOption = .guests
+            }
         }
     }
 }
