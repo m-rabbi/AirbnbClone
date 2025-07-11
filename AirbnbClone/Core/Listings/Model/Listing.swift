@@ -26,6 +26,7 @@ struct Listing: Identifiable, Codable {
     var rating: Double
     var features: [ListingFeatures]
     var amenities: [ListingAmenities]
+    let type: ListingType
 }
 
 enum ListingFeatures: Int, Identifiable, Hashable, Codable {
@@ -95,5 +96,23 @@ enum ListingAmenities: Int, Identifiable, Hashable, Codable {
     }
     var id: Int { return self.rawValue }
     
+}
+
+enum ListingType: Int, Identifiable, Hashable, Codable {
+    case apartment
+    case house
+    case townHouse
+    case villa
+    
+    var description: String {
+        switch self {
+        case .apartment: return "Apartment"
+        case .house: return "House"
+        case .townHouse: return "Town House"
+        case .villa: return "Villa"
+        }
+    }
+    
+    var id: Int { return self.rawValue }
 }
 
