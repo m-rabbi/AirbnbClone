@@ -30,8 +30,9 @@ struct DestinationSearchView: View {
                     .foregroundStyle(.black)
             }
             
+            
             // location input
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 8) {
                 if selectedOption == .location {
                     Text("Where to?")
                         .font(.title2)
@@ -54,10 +55,11 @@ struct DestinationSearchView: View {
                 } else {
                     CollapsedPickerView(title: "Where", description: "Add Destination")
                 }
-                    
+                
                 
             }
             .padding()
+            .frame(height: selectedOption == .location ? 120 : 64)
             .background(.white)
             .clipShape(RoundedRectangle(cornerRadius: 12))
             .padding()
@@ -66,27 +68,39 @@ struct DestinationSearchView: View {
                 selectedOption = .location
             }
             
+            
             // date selection view
             VStack {
                 if selectedOption == .dates {
-                    
+                    Text("Show Expanded View")
                 } else {
                     CollapsedPickerView(title: "When", description: "Add dates")
                 }
             }
-            .onTapGesture {
+            .padding()
+            .frame(height: selectedOption == .dates ? 120 : 64)
+            .background(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .padding()
+            .shadow(radius: 10)            .onTapGesture {
                 selectedOption = .dates
             }
-             
+            
+            
             // num of guests
             VStack {
                 if selectedOption == .guests {
-                    
+                    Text("Show Expanded View")
                 } else {
                     CollapsedPickerView(title: "Who", description: "Add guests")
                 }
             }
-            .onTapGesture {
+            .padding()
+            .frame(height: selectedOption == .guests ? 120 : 64)
+            .background(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .padding()
+            .shadow(radius: 10)            .onTapGesture {
                 selectedOption = .guests
             }
         }
@@ -114,10 +128,5 @@ struct CollapsedPickerView: View {
             .fontWeight(.semibold)
             .font(.subheadline)
         }
-        .padding()
-        .background(.white)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-        .padding()
-        .shadow(radius: 10)
     }
 }
