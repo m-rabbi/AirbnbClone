@@ -47,7 +47,7 @@ struct DestinationSearchView: View {
                             .fontWeight(.semibold)
                     }
                 }
-
+                
             }
             .padding()
             
@@ -79,12 +79,8 @@ struct DestinationSearchView: View {
                 
                 
             }
-            .padding()
+            .modifier(CollapsableDestiionViewModifier())
             .frame(height: selectedOption == .location ? 120 : 64)
-            .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding()
-            .shadow(radius: 10)
             .onTapGesture {
                 withAnimation(.snappy) {
                     selectedOption = .location
@@ -105,7 +101,7 @@ struct DestinationSearchView: View {
                         Divider()
                         
                         DatePicker("To", selection: $endDate, displayedComponents: .date)
-
+                        
                     }
                     .foregroundStyle(.secondary)
                     .font(.subheadline)
@@ -117,12 +113,8 @@ struct DestinationSearchView: View {
                     CollapsedPickerView(title: "When", description: "Add dates")
                 }
             }
-            .padding()
+            .modifier(CollapsableDestiionViewModifier())
             .frame(height: selectedOption == .dates ? 180 : 64)
-            .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding()
-            .shadow(radius: 10)
             .onTapGesture {
                 withAnimation(.snappy) {
                     selectedOption = .dates
@@ -145,18 +137,14 @@ struct DestinationSearchView: View {
                         guard numGuests > 0 else { return }
                         numGuests -= 1
                     }
-
+                    
                     
                 } else {
-                        CollapsedPickerView(title: "Who", description: "Add guests")
-                    }
+                    CollapsedPickerView(title: "Who", description: "Add guests")
+                }
             }
-            .padding()
+            .modifier(CollapsableDestiionViewModifier())
             .frame(height: selectedOption == .guests ? 120 : 64)
-            .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding()
-            .shadow(radius: 10)
             .onTapGesture {
                 withAnimation(.snappy) {
                     selectedOption = .guests
@@ -170,6 +158,17 @@ struct DestinationSearchView: View {
 
 #Preview {
     DestinationSearchView(show: .constant(false))
+}
+
+struct CollapsableDestiionViewModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding()
+            .background(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .padding()
+            .shadow(radius: 10)
+    }
 }
 
 struct CollapsedPickerView: View {
