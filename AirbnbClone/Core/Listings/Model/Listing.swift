@@ -24,11 +24,34 @@ struct Listing: Identifiable, Codable {
     let state: String
     let title: String
     var rating: Double
+    var features: [ListingFeatures]
+    var amenities: [ListingAmenities]
 }
 
 enum ListingFeatures: Int, Identifiable, Hashable, Codable {
     case selfCheckIn
     case superHost
+    
+    var imageName: String {
+        switch self {
+        case .selfCheckIn: return "door.left.hand.open"
+        case .superHost: return "medal"
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .selfCheckIn: return "Self check-in"
+        case .superHost: return "Superhost"
+        }
+    }
+    
+    var subtitle: String {
+        switch self {
+        case .selfCheckIn: return "Check yourself in with the keypad"
+        case .superHost: return "Superhosts are experienced hosts who have consistently received positive reviews from guests"
+        }
+    }
     
     var id: Int { return self.rawValue }
 }
