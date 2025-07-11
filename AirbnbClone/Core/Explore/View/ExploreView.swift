@@ -27,7 +27,7 @@ struct ExploreView: View {
                     LazyVStack {
                         ForEach(viewModel.listings) { listing in
                             NavigationLink(value: listing) {
-                                ListingItemView()
+                                ListingItemView(listing: listing)
                             }
                         }
                     }
