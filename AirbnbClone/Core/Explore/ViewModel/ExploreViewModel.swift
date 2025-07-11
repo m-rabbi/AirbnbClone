@@ -15,6 +15,6 @@ class ExploreViewModel: ObservableObject {
     }
     
     func fetchListings() async {
-        
+         
     }
 }

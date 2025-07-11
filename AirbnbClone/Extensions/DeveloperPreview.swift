@@ -8,6 +8,8 @@
 import Foundation
 
 class DeveloperPreview {
+    static let shared = DeveloperPreview()
+    
     static let allImages = [
         "listing-0",
         "listing-1",
