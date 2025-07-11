@@ -26,4 +26,51 @@ struct Listing: Identifiable, Codable {
     var rating: Double
 }
 
+enum ListingFeatures: Int, Identifiable, Hashable, Codable {
+    case selfCheckIn
+    case superHost
+    
+    var id: Int { return self.rawValue }
+}
+
+enum ListingAmenities: Int, Identifiable, Hashable, Codable {
+    case pool
+    case kitchen
+    case wifi
+    case laundry
+    case tv
+    case alarmSystem
+    case office
+    case balcony
+    
+    var title: String {
+        switch self {
+        case .pool: return "Pool"
+        case .kitchen: return "Kitchen"
+        case .wifi: return "Wifi"
+        case .laundry: return "Laundry"
+        case .tv: return "Tv"
+        case .alarmSystem: return "Alarm System"
+        case .office: return "Office"
+        case .balcony: return "Balcony"
+        }
+        
+    }
+    var imageName: String {
+        switch self {
+        case .pool: return "figure.pool.swim"
+        case .kitchen: return "fork.knife"
+        case .wifi: return "wifi"
+        case .laundry: return "washer"
+        case .tv: return "tv"
+        case .alarmSystem: return "checkerboard.shield"
+        case .office: return "pencil.and.ruler.fill"
+        case .balcony: return "building"
+        }
+        
+        
+    }
+    var id: Int { return self.rawValue }
+    
+}
 
