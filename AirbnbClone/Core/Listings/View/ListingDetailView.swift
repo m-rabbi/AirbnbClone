@@ -12,9 +12,17 @@ struct ListingDetailView: View {
     
     @Environment(\.dismiss) var dismiss
     let listing: Listing
+    @State private var cameraPosition: MapCameraPosition
     
+    init(listing: Listing) {
+        self.listing = listing
+        let region = MKCoordinateRegion.region(for: listing.coordinate)
+        self._cameraPosition = State(initialValue: .region(region))
+    }
+
     var body: some View {
         ScrollView {
+            // images & button
             ZStack(alignment: .topLeading) {
                 ListingImageCarouselView(listing: listing)
                     .frame(height: 320)
@@ -40,6 +48,7 @@ struct ListingDetailView: View {
                 
             }
             
+            // listing subheadline
             VStack(alignment: .leading, spacing: 8) {
                 Text(listing.title)
                     .font(.title)
@@ -175,7 +184,7 @@ struct ListingDetailView: View {
                 Text("Where you will be")
                     .font(.headline)
                 
-                Map()
+                Map(position: $cameraPosition)
                     .frame(height: 250)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }

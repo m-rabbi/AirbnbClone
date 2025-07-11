@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct Listing: Identifiable, Codable, Hashable {
     let id: String
@@ -28,6 +29,10 @@ struct Listing: Identifiable, Codable, Hashable {
     var features: [ListingFeatures]
     var amenities: [ListingAmenities]
     let type: ListingType
+    
+    var coordinate: CLLocationCoordinate2D {
+        .init(latitude: latitude, longitude: longitude)
+    }
 }
 
 enum ListingFeatures: Int, Identifiable, Hashable, Codable {
