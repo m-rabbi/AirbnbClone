@@ -19,6 +19,7 @@ struct DestinationSearchView: View {
     @State private var selectedOption: DestinationSearchOptions = .location
     @State private var startDate = Date()
     @State private var endDate = Date()
+    @State private var numGuests = 0
     
     
     var body: some View {
@@ -113,13 +114,23 @@ struct DestinationSearchView: View {
             
             
             // num of guests
-            VStack {
+            VStack(alignment: .leading, spacing: 8) {
                 if selectedOption == .guests {
-                    HStack {
-                        Text("Show Expanded View")
-                        
-                        Spacer()
-                    }                } else {
+                    Text("Who's coming?")
+                        .font(.title)
+                        .fontWeight(.semibold)
+                    
+                    Stepper {
+                        Text("\(numGuests) Adults")
+                    } onIncrement: {
+                        numGuests += 1
+                    } onDecrement: {
+                        guard numGuests > 0 else { return }
+                        numGuests -= 1
+                    }
+
+                    
+                } else {
                         CollapsedPickerView(title: "Who", description: "Add guests")
                     }
             }
