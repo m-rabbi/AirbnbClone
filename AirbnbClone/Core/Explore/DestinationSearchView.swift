@@ -7,9 +7,16 @@
 
 import SwiftUI
 
+enum DestinationSearchOptions {
+    case location
+    case dates
+    case guests
+}
+
 struct DestinationSearchView: View {
     @Binding var show: Bool
     @State private var destination = ""
+    @State private var selectedOption: DestinationSearchOptions = .location
     
     var body: some View {
         VStack {
@@ -23,7 +30,7 @@ struct DestinationSearchView: View {
                     .foregroundStyle(.black)
             }
             
-            // destination input
+            // location input
             VStack(alignment: .leading) {
                 Text("Where to?")
                     .font(.title2)
@@ -49,13 +56,21 @@ struct DestinationSearchView: View {
             .clipShape(RoundedRectangle(cornerRadius: 12))
             .padding()
             .shadow(radius: 10)
+            .onTapGesture {
+                selectedOption = .location
+            }
             
             // date selection view
             CollapsedPickerView(title: "When", description: "Add dates")
-
+                .onTapGesture {
+                    selectedOption = .dates
+                }
              
             // num of guests
             CollapsedPickerView(title: "Who", description: "Add guests")
+                .onTapGesture {
+                    selectedOption = .guests
+                }
         }
     }
 }
