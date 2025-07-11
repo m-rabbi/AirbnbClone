@@ -65,14 +65,20 @@ struct DestinationSearchView: View {
             .padding()
             .shadow(radius: 10)
             .onTapGesture {
-                selectedOption = .location
+                withAnimation(.snappy) {
+                    selectedOption = .location
+                }
             }
             
             
             // date selection view
             VStack {
                 if selectedOption == .dates {
-                    Text("Show Expanded View")
+                    HStack {
+                        Text("Show Expanded View")
+                        
+                        Spacer()
+                    }
                 } else {
                     CollapsedPickerView(title: "When", description: "Add dates")
                 }
@@ -82,16 +88,22 @@ struct DestinationSearchView: View {
             .background(.white)
             .clipShape(RoundedRectangle(cornerRadius: 12))
             .padding()
-            .shadow(radius: 10)            .onTapGesture {
-                selectedOption = .dates
+            .shadow(radius: 10)
+            .onTapGesture {
+                withAnimation(.snappy) {
+                    selectedOption = .dates
+                }
             }
             
             
             // num of guests
             VStack {
                 if selectedOption == .guests {
-                    Text("Show Expanded View")
-                } else {
+                    HStack {
+                        Text("Show Expanded View")
+                        
+                        Spacer()
+                    }                } else {
                     CollapsedPickerView(title: "Who", description: "Add guests")
                 }
             }
@@ -100,8 +112,11 @@ struct DestinationSearchView: View {
             .background(.white)
             .clipShape(RoundedRectangle(cornerRadius: 12))
             .padding()
-            .shadow(radius: 10)            .onTapGesture {
-                selectedOption = .guests
+            .shadow(radius: 10)
+            .onTapGesture {
+                withAnimation(.snappy) {
+                    selectedOption = .guests
+                }
             }
         }
     }
