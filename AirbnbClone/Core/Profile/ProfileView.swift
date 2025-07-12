@@ -33,7 +33,7 @@ struct ProfileView: View {
             }
             .padding(.vertical)
            
-            if authManager.userSessionId != nil { 
+            if authManager.userSessionId != nil {
                 Button {
                     authManager.signout()
                 } label: {

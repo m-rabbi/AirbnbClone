@@ -15,7 +15,7 @@ class AuthManager: ObservableObject {
     init(service: AuthServiceProtocol) {
         self.service = service
         
-//        self.userSessionId = UUID().uuidString
+        self.userSessionId = UUID().uuidString
     }
     
     @MainActor
