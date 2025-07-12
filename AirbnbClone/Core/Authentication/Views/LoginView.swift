@@ -10,6 +10,8 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    
+    @StateObject var viewModel = LoginViewModel(service: MockAuthService())
 
     
     var body: some View {
@@ -45,7 +47,7 @@ struct LoginView: View {
                 }
                 
                 Button {
-                    print("DEBUG: Login")
+                    Task { await viewModel.login(withemail: email, password: password ) }
                 } label: {
                     Text("Login")
                         .modifier(PrimaryButtonModifier())
