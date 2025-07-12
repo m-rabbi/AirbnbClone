@@ -33,6 +33,10 @@ struct Listing: Identifiable, Codable, Hashable {
     var coordinate: CLLocationCoordinate2D {
         .init(latitude: latitude, longitude: longitude)
     }
+    
+    var formattedRating: String {
+        String(format: "%.1f", rating)
+    }
 }
 
 enum ListingFeatures: Int, Identifiable, Hashable, Codable {

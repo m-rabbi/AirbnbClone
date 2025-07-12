@@ -19,7 +19,7 @@ struct ListingMapView: View {
         self.listings = listings
         self._position = State(initialValue: .region(MKCoordinateRegion.region(for: coordinate, span: 0.5)))
     }
-
+    
     var body: some View {
         ZStack {
             Map(position: $position) {
@@ -58,7 +58,7 @@ struct ListingMapView: View {
                 }
                 Spacer()
             }
-
+            
             // Summary card at bottom
             if let listing = selectedListing {
                 VStack {
@@ -83,7 +83,7 @@ struct ListingMapView: View {
                             }
                             .padding([.top, .trailing], 8)
                         }
-                        ListingItemView(listing: listing)
+                        ListingMapPreviewView(listing: listing)
                             .background(
                                 RoundedRectangle(cornerRadius: 20, style: .continuous)
                                     .fill(.ultraThinMaterial)
@@ -96,7 +96,7 @@ struct ListingMapView: View {
                             .padding(.horizontal, 16)
                             .transition(.move(edge: .bottom))
                     }
-                } 
+                }
                 .animation(.spring(), value: selectedListing)
             }
         }
@@ -125,7 +125,7 @@ struct ListingMapAnnotationView: View {
                         .frame(width: 44, height: 44)
                 )
                 .shadow(radius: 2)
-
+            
             // Price bubble
             Text("$\(listing.pricePerNight)")
                 .font(.subheadline)
