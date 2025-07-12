@@ -32,6 +32,19 @@ struct ProfileView: View {
 
             }
             .padding(.vertical)
+           
+            if authManager.userSessionId != nil { 
+                Button {
+                    authManager.signout()
+                } label: {
+                    Text("Log Out")
+                        .underline()
+                        .foregroundStyle(.black)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading) 
+            }
         }
         .padding()
         .sheet(isPresented: $showLogin) {
