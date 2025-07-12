@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @State private var showLogin = false
+    
     var body: some View {
         VStack {
             // profile header
@@ -22,7 +24,7 @@ struct ProfileView: View {
                 
                 
                 Button {
-                    print("Log in")
+                    showLogin.toggle()
                 } label: {
                     Text("Log in")
                         .foregroundStyle(.white)
@@ -54,6 +56,9 @@ struct ProfileView: View {
             .padding(.vertical)
         }
         .padding()
+        .sheet(isPresented: $showLogin) {
+            LoginView() 
+        }
     }
 }
 

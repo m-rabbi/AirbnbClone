@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WishlistView: View {
+    @State private var showLogin = false
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 32) {
@@ -21,7 +23,7 @@ struct WishlistView: View {
                 }
                 
                 Button {
-                    print("Log in")
+                    showLogin.toggle()
                 } label: {
                     Text("Log in")
                         .foregroundStyle(.white)
@@ -36,6 +38,9 @@ struct WishlistView: View {
             }
             .padding()
             .navigationTitle("Wishlists")
+            .sheet(isPresented: $showLogin) {
+                LoginView()
+            }
         }
     }
 }
