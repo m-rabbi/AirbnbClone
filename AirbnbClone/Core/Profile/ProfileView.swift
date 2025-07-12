@@ -19,40 +19,9 @@ struct ProfileView: View {
         VStack {
             // profile header
             if authManager.userSessionId == nil {
-                VStack(alignment: .leading, spacing: 18) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Profile")
-                            .font(.largeTitle)
-                            .fontWeight(.semibold)
-                        
-                        Text("Log in to start planning your next trip")
-                    }
-                    
-                    
-                    Button {
-                        showLogin.toggle()
-                    } label: {
-                        Text("Log in")
-                            .foregroundStyle(.white)
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                            .frame(width: 405, height: 48)
-                            .background(.pink.opacity(0.9))
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                    }
-                    
-                    HStack(spacing: 2) {
-                        Text("Don't have an account?")
-                        
-                        Text("Sign up")
-                            .fontWeight(.semibold)
-                            .underline()
-                    }
-                    .font(.footnote)
-                    
-                }
+                ProfileLoginView(showLogin: $showLogin)
             } else {
-                Text("Show profile stuffs")
+                UserProfileHeaderView()
             }
             
             // profile options
