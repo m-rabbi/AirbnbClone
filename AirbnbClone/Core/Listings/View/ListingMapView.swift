@@ -100,7 +100,7 @@ struct ListingMapView: View {
                 .animation(.spring(), value: selectedListing)
             }
         }
-        .sheet(isPresented: $showingListingDetail) {
+        .fullScreenCover(isPresented: $showingListingDetail) {
             if let listing = selectedListing {
                 ListingDetailView(listing: listing)
             }
