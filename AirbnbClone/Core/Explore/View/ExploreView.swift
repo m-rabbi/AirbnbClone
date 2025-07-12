@@ -17,7 +17,7 @@ struct ExploreView: View {
                 DestinationSearchView(show: $showDestinationSearchView, viewModel: viewModel)
             } else {
                 ScrollView {
-                    SearchAndFilterBar()
+                    SearchAndFilterBar(location: $viewModel.searchLocation)
                         .onTapGesture {
                             withAnimation (.snappy) {
                                 showDestinationSearchView.toggle()
