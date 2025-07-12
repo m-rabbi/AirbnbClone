@@ -28,6 +28,7 @@ struct DestinationSearchView: View {
             HStack {
                 Button {
                     withAnimation(.snappy) {
+                        viewModel.updateListingsForLocation()
                         show.toggle()
                     }
                 } label: {
@@ -41,6 +42,7 @@ struct DestinationSearchView: View {
                 if !viewModel.searchLocation.isEmpty {
                     Button {
                         viewModel.searchLocation = ""
+                        viewModel.updateListingsForLocation()
                     } label: {
                         Text("Clear")
                             .foregroundStyle(.black)
