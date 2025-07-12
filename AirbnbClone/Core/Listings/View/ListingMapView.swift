@@ -17,7 +17,7 @@ struct ListingMapView: View {
     
     init(listings: [Listing], coordinate: CLLocationCoordinate2D) {
         self.listings = listings
-        self._position = State(initialValue: .region(MKCoordinateRegion.region(for: coordinate, span: 100)))
+        self._position = State(initialValue: .region(MKCoordinateRegion.region(for: coordinate, span: 0.5)))
     }
 
     var body: some View {
@@ -37,11 +37,10 @@ struct ListingMapView: View {
             // Close button
             VStack {
                 HStack {
-                    Spacer()
                     Button(action: {
                         dismiss()
                     }) {
-                        Image(systemName: "xmark")
+                        Image(systemName: "chevron.left")
                             .foregroundStyle(.black)
                             .frame(width: 40, height: 40)
                             .background(
@@ -53,8 +52,9 @@ struct ListingMapView: View {
                                     )
                             )
                     }
-                    .padding(.trailing, 20)
-                    .padding(.top, 10)
+                    .padding(.leading, 20)
+                    .padding(.top, 48)
+                    Spacer()
                 }
                 Spacer()
             }
