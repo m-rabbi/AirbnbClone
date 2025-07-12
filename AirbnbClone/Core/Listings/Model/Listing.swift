@@ -118,7 +118,16 @@ enum ListingType: Int, Identifiable, Hashable, Codable {
         case .villa: return "Villa"
         }
     }
-    
+
+    var imageName: String {
+        switch self {
+        case .apartment: return "building.2.fill"
+        case .house: return "house.fill"
+        case .townHouse: return "building.columns.fill"
+        case .villa: return "house.lodge.fill"        
+        }
+    }
+
     var id: Int { return self.rawValue }
 }
 

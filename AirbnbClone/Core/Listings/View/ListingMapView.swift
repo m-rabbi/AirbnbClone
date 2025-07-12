@@ -113,26 +113,34 @@ struct ListingMapAnnotationView: View {
     let listing: Listing
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 4) {
+            // Relevant icon for house type with rounded rectangle background
+            Image(systemName: listing.type.imageName)
+                .font(.system(size: 32))
+                .foregroundColor(.red)
+                .padding(6)
+                .background(
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .fill(Color.white)
+                        .frame(width: 44, height: 44)
+                )
+                .shadow(radius: 2)
+
             // Price bubble
             Text("$\(listing.pricePerNight)")
-                .font(.caption)
-                .fontWeight(.semibold)
-                .foregroundColor(.white)
-                .padding(.horizontal, 8)
+                .font(.subheadline)
+                .fontWeight(.bold)
+                .foregroundColor(.black)
+                .padding(.horizontal, 10)
                 .padding(.vertical, 4)
-                .background(Color.black)
-                .clipShape(RoundedRectangle(cornerRadius: 8)) 
-            
-            // Map pin
-            Image(systemName: "mappin.circle.fill")
-                .font(.title)
-                .foregroundColor(.red)
-                .background(Color.white)
-                .clipShape(Circle())
+                .background(
+                    Capsule()
+                        .fill(Color.white)
+                        .shadow(color: .black.opacity(0.15), radius: 2, x: 0, y: 1)
+                )
         }
-        .padding(12) // Increase tap area
-        .contentShape(Rectangle()) // Make the whole padded area tappable
+        .padding(8)
+        .contentShape(Rectangle())
     }
 }
 
