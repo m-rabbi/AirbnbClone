@@ -12,7 +12,7 @@ struct RegistrationView: View {
     @State private var password = ""
     @State private var fullname = ""
     
-    @StateObject var viewModel = RegistrationViewModel(service: MockAuthService())
+    @StateObject var viewModel = RegistrationViewModel(authManager: AuthManager(service: MockAuthService()))
     
     @Environment(\.dismiss) var dismiss
      
@@ -80,7 +80,7 @@ extension RegistrationView: AuthenticationFormProtocol {
         !fullname.isEmpty
     }
 }
-
+ 
 #Preview {
     RegistrationView()
 }

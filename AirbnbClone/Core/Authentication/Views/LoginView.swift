@@ -10,9 +10,16 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    @Environment(\.dismiss) var dismiss 
     
-    @StateObject var viewModel = LoginViewModel(service: MockAuthService())
-
+    @StateObject var viewModel: LoginViewModel
+    private let authManager: AuthManager
+    
+    init(authManager: AuthManager) {
+        self.authManager = authManager
+        
+        self._viewModel = StateObject(wrappedValue: LoginViewModel(authManager: authManager))
+    }
     
     var body: some View {
         NavigationStack {
@@ -47,7 +54,9 @@ struct LoginView: View {
                 }
                 
                 Button {
-                    Task { await viewModel.login(withEmail: email, password: password ) }
+                    Task { await viewModel.login(withEmail: email, password: password)
+                        dismiss()
+                    }
                 } label: {
                     Text("Login")
                         .modifier(PrimaryButtonModifier())
@@ -94,5 +103,5 @@ extension LoginView: AuthenticationFormProtocol {
 }
 
 #Preview {
-    LoginView()
+    LoginView(authManager: AuthManager(service: MockAuthService()))
 }

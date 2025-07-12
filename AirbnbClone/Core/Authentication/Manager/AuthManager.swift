@@ -14,6 +14,8 @@ class AuthManager: ObservableObject {
     
     init(service: MockAuthService) {
         self.service = service
+        
+//        self.userSessionId = UUID().uuidString
     }
     
     @MainActor
