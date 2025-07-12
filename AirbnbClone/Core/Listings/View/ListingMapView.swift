@@ -63,30 +63,11 @@ struct ListingMapView: View {
             if let listing = selectedListing {
                 VStack {
                     Spacer()
-                    VStack(spacing: 0) {
-                        HStack {
-                            Spacer()
-                            Button(action: {
-                                selectedListing = nil
-                            }) {
-                                Image(systemName: "xmark")
-                                    .foregroundStyle(.black)
-                                    .frame(width: 30, height: 30)
-                                    .background(
-                                        Circle()
-                                            .fill(.ultraThinMaterial)
-                                            .overlay(
-                                                Circle()
-                                                    .stroke(Color.white.opacity(0.4), lineWidth: 1)
-                                            )
-                                    )
-                            }
-                            .padding([.top, .trailing], 8)
-                        }
+                    ZStack(alignment: .topTrailing) {
                         ListingMapPreviewView(listing: listing)
                             .background(
                                 RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                    .fill(.ultraThinMaterial)
+                                    .fill(.white)
                                     .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
@@ -95,6 +76,23 @@ struct ListingMapView: View {
                             }
                             .padding(.horizontal, 16)
                             .transition(.move(edge: .bottom))
+                        Button(action: {
+                            selectedListing = nil
+                        }) {
+                            Image(systemName: "xmark")
+                                .foregroundStyle(.black)
+                                .frame(width: 30, height: 30)
+                                .background(
+                                    Circle()
+                                        .fill(.ultraThinMaterial)
+                                        .overlay(
+                                            Circle()
+                                                .stroke(Color.white.opacity(0.4), lineWidth: 1)
+                                        )
+                                )
+                        }
+                        .padding(.top, 15)
+                        .padding(.trailing, 30)
                     }
                 }
                 .animation(.spring(), value: selectedListing)
@@ -117,11 +115,11 @@ struct ListingMapAnnotationView: View {
             // Relevant icon for house type with rounded rectangle background
             Image(systemName: listing.type.imageName)
                 .font(.system(size: 32))
-                .foregroundColor(.red)
+                .foregroundColor(.white)
                 .padding(6)
                 .background(
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
-                        .fill(Color.white)
+                        .fill(Color.pink)
                         .frame(width: 44, height: 44)
                 )
                 .shadow(radius: 2)
@@ -130,7 +128,7 @@ struct ListingMapAnnotationView: View {
             Text("$\(listing.pricePerNight)")
                 .font(.subheadline)
                 .fontWeight(.bold)
-                .foregroundColor(.black)
+                .foregroundColor(.pink)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 4)
                 .background(
