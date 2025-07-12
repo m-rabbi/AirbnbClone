@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExploreView: View {
     @State private var showDestinationSearchView = false
-    @State private var showMapView = false // Add state for map sheet
+    @State private var showMapView = false
     @State var viewModel = ExploreViewModel(service: ExploreService())
     
     var body: some View {

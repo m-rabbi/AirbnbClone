@@ -13,6 +13,7 @@ struct ListingMapView: View {
     @State private var position: MapCameraPosition
     @State private var selectedListing: Listing?
     @State private var showingListingDetail = false
+    @Environment(\.dismiss) private var dismiss
     
     init(listings: [Listing], coordinate: CLLocationCoordinate2D) {
         self.listings = listings
@@ -38,7 +39,7 @@ struct ListingMapView: View {
                 HStack {
                     Spacer()
                     Button(action: {
-                        
+                        dismiss()
                     }) {
                         Image(systemName: "xmark")
                             .foregroundStyle(.black)
