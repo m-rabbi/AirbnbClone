@@ -9,15 +9,15 @@ import Foundation
 
 class LoginViewModel: ObservableObject {
     
-    private let service: MockAuthService
+    private let authManager: AuthManager
     
-    init(service: MockAuthService) {
-        self.service = service
+    init(authManager: AuthManager) {
+        self.authManager = authManager
     }
     
-    func login(withemail email: String, password: String) async {
+    func login(withEmail email: String, password: String) async {
         do {
-            try await service.login(withemail: email, password: password)
+            try await authManager.login(withEmail: email, password: password)
         } catch {
             print("DEBUG: Failed to login with error: \(error.localizedDescription)")
         }

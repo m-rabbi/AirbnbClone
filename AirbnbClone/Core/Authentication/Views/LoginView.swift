@@ -47,7 +47,7 @@ struct LoginView: View {
                 }
                 
                 Button {
-                    Task { await viewModel.login(withemail: email, password: password ) }
+                    Task { await viewModel.login(withEmail: email, password: password ) }
                 } label: {
                     Text("Login")
                         .modifier(PrimaryButtonModifier())

@@ -9,11 +9,11 @@ import Foundation
 
 struct MockAuthService {
     
-    func login(withemail email: String, password: String) async throws -> String? {
+    func login(withEmail email: String, password: String) async throws -> String? {
         return UUID().uuidString
     }
     
-    func createUser(withemail email: String, password: String, fullname: String) -> String? {
+    func createUser(withEmail email: String, password: String, fullname: String) async throws -> String? {
         return UUID().uuidString
     }
     

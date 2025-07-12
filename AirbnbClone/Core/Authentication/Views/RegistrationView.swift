@@ -39,7 +39,7 @@ struct RegistrationView: View {
             }
                         
             Button {
-                Task { await viewModel.createUser(withemail: email, password: password, fullname: fullname) }
+                Task { await viewModel.createUser(withEmail: email, password: password, fullname: fullname) }
             } label: {
                 Text("Create Account")
                     .modifier(PrimaryButtonModifier())

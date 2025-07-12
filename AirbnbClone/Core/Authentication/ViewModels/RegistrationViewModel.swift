@@ -8,15 +8,15 @@
 import Foundation
 
 class RegistrationViewModel: ObservableObject {
-    private let service: MockAuthService
+    private let authManager: AuthManager
     
-    init(service: MockAuthService) {
-        self.service = service
+    init(authManager: AuthManager) {
+        self.authManager = authManager
     }
     
-    func createUser(withemail email: String, password: String, fullname: String) async {
+    func createUser(withEmail email: String, password: String, fullname: String) async {
         do {
-            try await service.createUser(withemail: email, password: password, fullname: fullname)
+            try await authManager.createUser(withEmail: email, password: password, fullname: fullname)
         } catch {
             print("DEBUG: Failed to create user with error: \(error.localizedDescription)")
         }

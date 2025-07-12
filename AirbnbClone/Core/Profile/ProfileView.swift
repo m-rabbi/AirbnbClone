@@ -8,42 +8,51 @@
 import SwiftUI
 
 struct ProfileView: View {
+    private let authManager: AuthManager
     @State private var showLogin = false
+    
+    init(authManager: AuthManager) {
+        self.authManager = authManager
+    }
     
     var body: some View {
         VStack {
             // profile header
-            VStack(alignment: .leading, spacing: 18) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Profile")
-                        .font(.largeTitle)
-                        .fontWeight(.semibold)
+            if authManager.userSessionId == nil {
+                VStack(alignment: .leading, spacing: 18) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Profile")
+                            .font(.largeTitle)
+                            .fontWeight(.semibold)
+                        
+                        Text("Log in to start planning your next trip")
+                    }
                     
-                    Text("Log in to start planning your next trip")
-                }
-                
-                
-                Button {
-                    showLogin.toggle()
-                } label: {
-                    Text("Log in")
-                        .foregroundStyle(.white)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .frame(width: 405, height: 48)
-                        .background(.pink.opacity(0.9))
-                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                }
-                
-                HStack(spacing: 2) {
-                    Text("Don't have an account?")
                     
-                    Text("Sign up")
-                        .fontWeight(.semibold)
-                        .underline()
+                    Button {
+                        showLogin.toggle()
+                    } label: {
+                        Text("Log in")
+                            .foregroundStyle(.white)
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .frame(width: 405, height: 48)
+                            .background(.pink.opacity(0.9))
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+                    
+                    HStack(spacing: 2) {
+                        Text("Don't have an account?")
+                        
+                        Text("Sign up")
+                            .fontWeight(.semibold)
+                            .underline()
+                    }
+                    .font(.footnote)
+                    
                 }
-                .font(.footnote)
-                
+            } else {
+                Text("Show profile stuffs")
             }
             
             // profile options
@@ -63,5 +72,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView()
+    ProfileView(authManager: AuthManager(service: MockAuthService()))
 }
