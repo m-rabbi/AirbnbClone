@@ -13,7 +13,7 @@ struct AirbnbCloneApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(authManager: authManager)
+            ContentView(authManager: authManager) 
         }
     }
 }
