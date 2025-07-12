@@ -63,18 +63,39 @@ struct ListingMapView: View {
             if let listing = selectedListing {
                 VStack {
                     Spacer()
-                    ListingItemView(listing: listing)
-                        .background(
-                            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                .fill(.ultraThinMaterial)
-                                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
-                        )
-                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                        .onTapGesture {
-                            showingListingDetail = true
+                    VStack(spacing: 0) {
+                        HStack {
+                            Spacer()
+                            Button(action: {
+                                selectedListing = nil
+                            }) {
+                                Image(systemName: "xmark")
+                                    .foregroundStyle(.black)
+                                    .frame(width: 30, height: 30)
+                                    .background(
+                                        Circle()
+                                            .fill(.ultraThinMaterial)
+                                            .overlay(
+                                                Circle()
+                                                    .stroke(Color.white.opacity(0.4), lineWidth: 1)
+                                            )
+                                    )
+                            }
+                            .padding([.top, .trailing], 8)
                         }
-                        .padding(.horizontal, 16)
-                        .transition(.move(edge: .bottom))
+                        ListingItemView(listing: listing)
+                            .background(
+                                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                    .fill(.ultraThinMaterial)
+                                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
+                            )
+                            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                            .onTapGesture {
+                                showingListingDetail = true
+                            }
+                            .padding(.horizontal, 16)
+                            .transition(.move(edge: .bottom))
+                    }
                 } 
                 .animation(.spring(), value: selectedListing)
             }
@@ -110,6 +131,8 @@ struct ListingMapAnnotationView: View {
                 .background(Color.white)
                 .clipShape(Circle())
         }
+        .padding(12) // Increase tap area
+        .contentShape(Rectangle()) // Make the whole padded area tappable
     }
 }
 

@@ -59,8 +59,8 @@ class DeveloperPreview {
             numberOfGuests: 4,
             numberOfBeds: 2,
             pricePerNight: 150,
-            latitude: 25.7743,
-            longitude: -80.1937,
+            latitude: 25.7800, // moved even further north
+            longitude: -80.2100, // moved even further west
             imageURLs: [DeveloperPreview.allImages[4], DeveloperPreview.allImages[5]],
             address: "456 Biscayne Blvd",
             city: "Miami",
