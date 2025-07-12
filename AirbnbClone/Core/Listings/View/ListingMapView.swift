@@ -16,7 +16,7 @@ struct ListingMapView: View {
     
     init(listings: [Listing], coordinate: CLLocationCoordinate2D) {
         self.listings = listings
-        self._position = State(initialValue: .region(MKCoordinateRegion.region(for: coordinate, span: 0.05)))
+        self._position = State(initialValue: .region(MKCoordinateRegion.region(for: coordinate, span: 100)))
     }
 
     var body: some View {
@@ -60,25 +60,22 @@ struct ListingMapView: View {
 
             // Summary card at bottom
             if let listing = selectedListing {
-                GeometryReader { geometry in
-                    VStack {
-                        Spacer()
-                        ListingItemView(listing: listing)
-                            .background(
-                                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                                    .fill(.ultraThinMaterial)
-                                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
-                            )
-                            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                            .onTapGesture {
-                                showingListingDetail = true
-                            }
-                            .padding(.horizontal, 16)
-                            .padding(.bottom, 20)
-                            .transition(.move(edge: .bottom))
-                    }
-                    .animation(.spring(), value: selectedListing)
-                }
+                VStack {
+                    Spacer()
+                    ListingItemView(listing: listing)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                                .fill(.ultraThinMaterial)
+                                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
+                        )
+                        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                        .onTapGesture {
+                            showingListingDetail = true
+                        }
+                        .padding(.horizontal, 16)
+                        .transition(.move(edge: .bottom))
+                } 
+                .animation(.spring(), value: selectedListing)
             }
         }
         .sheet(isPresented: $showingListingDetail) {
